@@ -1,5 +1,6 @@
 :root {
   --img--header: url(./images/bg-mobile-dark.jpg);
+  --img--header--desktop:url(./images/bg-desktop-dark.jpg);
   --icon--theme: url(./images/icon-sun.svg);
   --bg--main:hsl(235, 24%, 19%);
   --input-bg: hsl(235, 24%, 19%);
@@ -47,7 +48,7 @@ html {
 
 @media (min-width: 400px) {
   .header {
-    background-image: url(./images/bg-desktop-dark.jpg);
+    background-image: var(--img--header--desktop);
   }
 }
 
@@ -66,6 +67,12 @@ html {
           justify-content: space-between;
 }
 
+@media (min-width: 700px) {
+  .header div {
+    width: 50rem;
+  }
+}
+
 .header div h1 {
   color: white;
   font-family: 'Josefin Sans', sans-serif;
@@ -76,6 +83,7 @@ html {
   background-image: var(--icon--theme);
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
   outline: none;
   height: 40px;
   width: 40px;
@@ -88,6 +96,12 @@ html {
   width: 90%;
   margin: auto;
   padding: 20px 0;
+}
+
+@media (min-width: 700px) {
+  .form {
+    width: 50rem;
+  }
 }
 
 .form input {
@@ -114,6 +128,12 @@ html {
   right: 0;
   -webkit-transition: all ease .5s;
   transition: all ease .5s;
+}
+
+@media (min-width: 700px) {
+  .main {
+    width: 50rem;
+  }
 }
 
 .main .table {
@@ -210,6 +230,14 @@ html {
   margin: auto;
   padding: 20px 60px;
   border-radius: 5px;
+}
+
+@media (min-width: 700px) {
+  #action__filter div {
+    position: static;
+    width: 40%;
+    padding: 0px;
+  }
 }
 
 .footer {

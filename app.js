@@ -6,6 +6,7 @@ const btn_theme = document.querySelector('.btn_theme')
 
 const darkTheme = {
 "--img--header": "url(./images/bg-mobile-dark.jpg)",
+"--img--header--desktop": "url(./images/bg-desktop-dark.jpg)",
 "--icon--theme": "url(./images/icon-sun.svg)",
 "--bg--main":"hsl(235, 24%, 19%",
 "--input-bg":" hsl(235, 24%, 19%)",
@@ -18,6 +19,7 @@ const darkTheme = {
 
 const lightTheme = {
 "--img--header": "url(./images/bg-mobile-light.jpg)",
+"--img--header--desktop": "url(./images/bg-desktop-light.jpg)",
 "--icon--theme": "url(./images/icon-moon.svg)",
 "--bg--main":"hsl(0, 0%, 98%)",
 "--input-bg":"hsl(0, 0%, 98%)",
@@ -43,6 +45,11 @@ let tasks = [
   { id: 1629496207917, task: "task 1", done: false },
 ];
 
+const $countItem = document.getElementById('count__item')
+
+
+console.log($countItem)
+
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log(tasks);
@@ -52,10 +59,10 @@ $form.addEventListener("submit", (e) => {
     [e.target.task.name]: e.target.task.value,
     done: false,
   };
-
+  
   tasks.push(task);
   e.target.reset();
-
+  $countItem.innerText = `item left ${tasks.length}`
   renderTable(tasks);
 });
 
@@ -72,7 +79,7 @@ const renderTable = (n) => {
       item.done ? "checked" : "" }>
     <p class="title__task">${item.task}</p>
   </div>
-     <span class="deleted">x</span>
+     <span class="deleted"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg></span>
   </div>
 
         `;
@@ -80,6 +87,7 @@ const renderTable = (n) => {
  // $main.insertAdjacentElement('afterbegin', $table);
   
 };
+
 ///event the table body 
 $table.addEventListener("click", (e) => {
  
