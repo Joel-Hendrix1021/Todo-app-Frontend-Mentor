@@ -40,7 +40,9 @@ html {
   background-image: var(--img--header);
   background-repeat: no-repeat;
   background-position: center;
+  background-size:cover;
   text-align: center;
+  
   height: 200px;
   -webkit-transition: all ease .5s;
   transition: all ease .5s;
