@@ -59,7 +59,7 @@ $form.addEventListener("submit", (e) => {
   tasks.push(task);
   e.target.reset();
   renderTable(tasks);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  
 });
 
 let $frgmt = document.createDocumentFragment();
@@ -84,6 +84,7 @@ const renderTable = (n) => {
         `;
   });
   $countItem.innerText = `item left ${tasks.length}`;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   // $main.insertAdjacentElement('afterbegin', $table);
   $del = document.getElementById("del");
 };
