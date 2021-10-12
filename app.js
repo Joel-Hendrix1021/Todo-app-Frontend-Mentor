@@ -31,23 +31,25 @@ const lightTheme = {
   "--color-deleted": "hsl(233, 11%, 84%)",
 };
 
+let switchTheme 
+
 window.addEventListener("DOMContentLoaded", () => {
+  switchTheme = JSON.parse(localStorage.getItem("switchTheme")) 
+  switchTheme ? changeTheme(lightTheme) : changeTheme(darkTheme);
   renderTable(tasks);
 });
 
+//save tasks in local storage
+const localTask = JSON.parse(localStorage.getItem("tasks"));
 
-let tasks = [
-  
-];
+let tasks = localTask ? localTask : [];
 
 const $countItem = document.getElementById("count__item");
-
-
 
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log(tasks);
-  if (e.target.task.value === "") alert("debes llenar el formulario");
+  if (e.target.task.value === "") return alert("debes llenar el formulario");
   let task = {
     id: Date.now(),
     [e.target.task.name]: e.target.task.value,
@@ -56,14 +58,13 @@ $form.addEventListener("submit", (e) => {
 
   tasks.push(task);
   e.target.reset();
-  $countItem.innerText = `item left ${tasks.length}`;
   renderTable(tasks);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
 let $frgmt = document.createDocumentFragment();
 
 const renderTable = (n) => {
-  console.log(n);
   $table.innerHTML = "";
   n.forEach((item) => {
     $table.innerHTML += `
@@ -82,6 +83,7 @@ const renderTable = (n) => {
 
         `;
   });
+  $countItem.innerText = `item left ${tasks.length}`;
   // $main.insertAdjacentElement('afterbegin', $table);
   $del = document.getElementById("del");
 };
@@ -98,14 +100,12 @@ $table.addEventListener("click", (e) => {
     );
     tasks = newArray;
   }
- 
-    if(e.target.classList.contains('img__cross')){
-     let id =e.target.parentNode.dataset.id
-     
-      tasks = tasks.filter(task=>  task.id != id )
-     renderTable(tasks)
-    }
-  
+
+  if (e.target.classList.contains("img__cross")) {
+    let id = e.target.parentNode.dataset.id;
+    tasks = tasks.filter((task) => task.id != id);
+    renderTable(tasks);
+  }
 });
 
 //
@@ -148,15 +148,16 @@ const filterTasks = (n, typeFilter, clear) => {
   }
 };
 
-let switchTheme = false;
+
+
 btn_theme.addEventListener("click", (e) => {
   switchTheme = !switchTheme;
   switchTheme ? changeTheme(lightTheme) : changeTheme(darkTheme);
+  localStorage.setItem("switchTheme", JSON.stringify(switchTheme))
 });
 
 const changeTheme = (theme) => {
   for (const key in theme) {
-    console.log(theme[key]);
     document.documentElement.style.setProperty(key, theme[key]);
   }
 };
