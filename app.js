@@ -37,11 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 let tasks = [
-  { id: 1629496203600, task: "study", done: false },
-  { id: 1629496204361, task: "read", done: true },
-  { id: 1629496209679, task: "run", done: false },
-  { id: 1629496218136, task: "swinng", done: true },
-  { id: 1629496207917, task: "task 1", done: false },
+  
 ];
 
 const $countItem = document.getElementById("count__item");
